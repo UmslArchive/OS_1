@@ -1,0 +1,4 @@
+./makefile
+./*.o
+./release
+./debug
