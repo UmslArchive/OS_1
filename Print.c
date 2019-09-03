@@ -3,15 +3,7 @@
 //Author:   Colby Ackerman
 //Class:    Operating Systems (CS4760)
 //Project:  Assignment 1
-//File:     "main.c"
+//File:     "Print.c"
 //=============================================================================
 
-#include "Options.h"
 
-int main(int argc, char** argv) {
-   initializeFlags(); 
-   
-   setFlags(argc, argv);
-
-   return 0;
-}

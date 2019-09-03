@@ -1,4 +1,6 @@
+.gitignore
 *.o
 release
 debug
 dt
+mainBackup.c
