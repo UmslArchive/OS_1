@@ -16,17 +16,17 @@
 
                     /* OPTION FLAG DECLARATIONS */
 
-extern int helpFlag;
-extern int setIndentFlag;
-extern int symLinkFlag;
-extern int printInfoFlag;
-extern int permissionsFlag;
-extern int numLinksFlag;
-extern int uidFlag;
-extern int gidFlag;
-extern int fileSizeFlag;
-extern int lastModTimeFlag;
-extern int tpiugsFlag;
+extern int helpFlag;        // -h
+extern int setIndentFlag;   // -I n
+extern int symLinkFlag;     // -L
+extern int printInfoFlag;   // -t
+extern int permissionsFlag; // -p
+extern int numLinksFlag;    // -i
+extern int uidFlag;         // -u
+extern int gidFlag;         // -g
+extern int fileSizeFlag;    // -s
+extern int lastModTimeFlag; // -d
+extern int tpiugsFlag;      // -l (lowercase L)
 
 extern char* indentValString;
 extern char* dirName;

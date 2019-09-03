@@ -8,22 +8,46 @@
 
 #include "Options.h"
 
+int helpFlag;
+int setIndentFlag;
+int symLinkFlag;
+int printInfoFlag;
+int permissionsFlag;
+int numLinksFlag;
+int uidFlag;
+int gidFlag;
+int fileSizeFlag;
+int lastModTimeFlag;
+int tpiugsFlag;
+
+char* indentValString;
+char* dirName;
+
 void initializeFlags() {
     
-    int helpFlag = 0;
-    int setIndentFlag = 0;
-    int symLinkFlag = 0;
-    int printInfoFlag = 0;
-    int permissionsFlag = 0;
-    int numLinksFlag = 0;
-    int uidFlag = 0;
-    int gidFlag = 0;
-    int fileSizeFlag = 0;
-    int lastModTimeFlag = 0;
-    int tpiugsFlag = 0;
+    helpFlag = 0;       // -h
+    setIndentFlag = 0;  // -I n
+    symLinkFlag = 0;    // -L
+    printInfoFlag = 0;  // -t
+    permissionsFlag = 0;// -p
+    numLinksFlag = 0;   // -i
+    uidFlag = 0;        // -u
+    gidFlag = 0;        // -g
+    fileSizeFlag = 0;   // -s
+    lastModTimeFlag = 0;// -d
+    tpiugsFlag = 0;     // -l (lowercase L)
 
-    char* indentValString = NULL;
-    char* dirName= NULL;
+    indentValString = NULL;   // -I n
+    dirName= NULL;            // [dirname]
+}
+
+static void tpiugsEnable() {
+    printInfoFlag = 1;
+    permissionsFlag = 1;
+    numLinksFlag = 1;
+    uidFlag = 1;
+    gidFlag = 1;
+    fileSizeFlag = 1;
 }
 
 void setFlags(int argc, char** argv) {
@@ -37,46 +61,49 @@ void setFlags(int argc, char** argv) {
     while((c = getopt(argc, argv, "hI:Ltpiugsdl")) != -1) {
         switch(c) {
             case 'h':
-                hFlag = 1;
+                helpFlag = 1;
                 break;
             
             case 'I':
-                IFlag = 1;
-                IFlagVal = optarg;
+                setIndentFlag = 1;
+                indentValString = optarg;
                 break;
             
             case 'L':
-                LFlag = 1;
-                break;
-
-            case 'd':
-                dFlag = 1;
-                break;
-            
-            case 'g':
-                gFlag = 1;
-                break;
-
-            case 'i':
-                iFlag = 1;
-                break;
-
-            case 'p':
-                pFlag = 1;
-                break;
-
-            case 's':
-                sFlag = 1;
+                symLinkFlag = 1;
                 break;
 
             case 't':
-                tFlag = 1;
+                printInfoFlag = 1;
+                break;
+            
+            case 'p':
+                permissionsFlag = 1;
+                break;
+
+            case 'i':
+                numLinksFlag = 1;
                 break;
 
             case 'u':
-                uFlag = 1;
+                uidFlag = 1;
                 break;
-                lFlag = 1;
+
+            case 'g':
+                gidFlag = 1;
+                break;
+
+            case 's':
+                fileSizeFlag = 1;
+                break;
+
+            case 'd':
+                lastModTimeFlag = 1;
+                break;
+
+            case 'l':
+                tpiugsFlag = 1;
+                tpiugsEnable();
                 break;
                 
             case '?':
@@ -88,7 +115,7 @@ void setFlags(int argc, char** argv) {
         
         //Set dirname to directory argument.
         for(i = optind; i < argc; i++) {
-            dirname = argv[i];
+            dirName = argv[i];
         }
     }
 }

@@ -13,5 +13,7 @@ int main(int argc, char** argv) {
    
    setFlags(argc, argv);
 
+   printFlags();
+
    return 0;
 }
