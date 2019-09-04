@@ -15,4 +15,6 @@
 
 void printHelp();
 
+void printAll();
+
 #endif

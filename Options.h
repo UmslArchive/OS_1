@@ -29,6 +29,7 @@ extern int lastModTimeFlag; // -d
 extern int tpiugsFlag;      // -l (lowercase L)
 
 extern char* indentValString;
+extern int convertedIndentVal;
 extern char* dirName;
 
                     /* FUNCTION DECLARATIONS */

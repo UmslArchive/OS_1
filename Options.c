@@ -21,6 +21,7 @@ int lastModTimeFlag;
 int tpiugsFlag;
 
 char* indentValString;
+int convertedIndentVal;
 char* dirName;
 
 void initializeFlags() {
@@ -57,6 +58,14 @@ static void printArgs(int argc, char** argv) {
     }
 }
 
+static int convertIndentStringToInteger() { 
+    if(indentValString != NULL) {
+        return atoi(indentValString);
+    }
+
+    return -1;
+}
+
 void setFlags(int argc, char** argv) {
 
     //Stuff for getopts
@@ -76,6 +85,7 @@ void setFlags(int argc, char** argv) {
             case 'I':
                 setIndentFlag = 1;
                 indentValString = optarg;
+                convertedIndentVal = convertIndentStringToInteger();
                 break;
             
             case 'L':

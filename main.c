@@ -6,7 +6,6 @@
 //File:     "main.c"
 //=============================================================================
 
-#include "Options.h"
 #include "Print.h"
 
 int main(int argc, char** argv) {
@@ -14,9 +13,7 @@ int main(int argc, char** argv) {
    
    setFlags(argc, argv);
 
-   //DEBUGprintFlags();
-
-   printHelp();
+   printAll();
 
    return 0;
 }
