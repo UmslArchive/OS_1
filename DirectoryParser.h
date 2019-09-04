@@ -16,11 +16,14 @@
 #include <stdlib.h>
 #include <time.h>
 #include <sys/stat.h>
+#include "Options.h"
 
 char* getCWD();
 
 int listFilesInDirectory(char* path);
 
 int isDirectory(char* path);
+
+void listdir(const char* name, int indent);
 
 #endif
