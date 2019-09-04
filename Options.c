@@ -50,6 +50,13 @@ static void tpiugsEnable() {
     fileSizeFlag = 1;
 }
 
+static void printArgs(int argc, char** argv) {
+    int i;
+    for(i = 0; i < argc; i++){
+        printf("%d: %s\n", i, argv[i]);
+    }
+}
+
 void setFlags(int argc, char** argv) {
 
     //Stuff for getopts
@@ -59,6 +66,8 @@ void setFlags(int argc, char** argv) {
 
     //Iterate through users passed parameters and set flags accordingly.
     while((c = getopt(argc, argv, "hI:Ltpiugsdl")) != -1) {
+        //DEBUGprintf("\nCurrent GetOpts Arg: %s\n", argv[optind - 1]);
+        //DEBUGprintArgs(argc, argv);
         switch(c) {
             case 'h':
                 helpFlag = 1;
@@ -113,11 +122,14 @@ void setFlags(int argc, char** argv) {
                 break;
         }
         
-        //Set dirname to directory argument.
-        for(i = optind; i < argc; i++) {
-            dirName = argv[i];
-        }
     }
+
+    //Set dirname to directory argument.
+    for(i = optind; i < argc; i++) {
+        if(argv[i] != NULL)
+            dirName = argv[i];
+    }
+    //DEBUGprintArgs(argc, argv);
 }
 
 void printFlags() {

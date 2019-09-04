@@ -6,4 +6,8 @@
 //File:     "Print.c"
 //=============================================================================
 
+#include "Print.h"
 
+void printHelp() {
+    printf("help: %d\n", helpFlag);
+}

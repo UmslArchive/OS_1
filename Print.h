@@ -6,4 +6,13 @@
 //File:     "Print.h"
 //=============================================================================
 
+#ifndef PRINT_H
+#define PRINT_H
 
+#include <stdio.h>
+#include "Options.h"
+#include "DirectoryParser.h"
+
+void printHelp();
+
+#endif

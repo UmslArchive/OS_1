@@ -7,13 +7,16 @@
 //=============================================================================
 
 #include "Options.h"
+#include "Print.h"
 
 int main(int argc, char** argv) {
    initializeFlags(); 
    
    setFlags(argc, argv);
 
-   printFlags();
+   //DEBUGprintFlags();
+
+   printHelp();
 
    return 0;
 }
