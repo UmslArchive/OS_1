@@ -28,4 +28,6 @@ void printAll() {
     listFilesInDirectory(dirName);
 
     printf("%s\n", getCWD());
+
+    printf("Is Dir: %d\n", isDirectory(dirName));
 }

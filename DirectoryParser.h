@@ -14,9 +14,13 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
+#include <sys/stat.h>
 
 char* getCWD();
 
 int listFilesInDirectory(char* path);
+
+int isDirectory(char* path);
 
 #endif
