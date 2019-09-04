@@ -26,4 +26,6 @@ void printHelp() {
 
 void printAll() {
     listFilesInDirectory(dirName);
+
+    printf("%s\n", getCWD());
 }

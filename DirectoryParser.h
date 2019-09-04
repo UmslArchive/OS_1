@@ -13,8 +13,9 @@
 #include <dirent.h>
 #include <errno.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-char *getcwd(char *buf, size_t size);
+char* getCWD();
 
 int listFilesInDirectory(char* path);
 

@@ -8,7 +8,29 @@
 
 #include "DirectoryParser.h"
 
-int listFilesInDirectory(char* path) {
+char* getCWD() {
+    long maxpath;
+    char* mycwdp;
+
+    if((maxpath = pathconf(".", _PC_PATH_MAX)) == -1) {
+        perror("Failed to determine the pathname length");
+        return NULL;
+    }
+
+    if((mycwdp = (char*) malloc(maxpath)) == NULL) {
+        perror("Failed to allocate space for pathname.");
+        return NULL;
+    }
+
+    if(getcwd(mycwdp, maxpath) == NULL) {
+        perror("Failed to get current working directory");
+        return NULL;
+    }
+
+    return mycwdp;
+}
+
+int listFilesInDirectory(char* path){
     struct dirent* direntp;
     DIR* dirp;
 
