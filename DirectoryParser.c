@@ -39,7 +39,7 @@ int isDirectory(const char* path) {
         return S_ISDIR(statbuf.st_mode);
 }
 
-void listdir(const char *path, int indent) {
+void listDirectories(const char *path, int indent) {
     DIR* dir;
     struct dirent* entry;
 
@@ -52,11 +52,15 @@ void listdir(const char *path, int indent) {
             if(strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
                 continue;
             snprintf(newPath, sizeof(newPath), "%s/%s", path, entry->d_name);
-            printf("%*s-%s\n", indent, "", entry->d_name);
-            listdir(newPath, indent + convertedIndentVal);
+            buildEntryString(newPath, entry->d_name, indent);
+            printEntry();
+            //printf("%*s%s\n", indent, "", entry->d_name);
+            listDirectories(newPath, indent + convertedIndentVal);
         }
         else {
-            printf("%*s- %s\n", indent, "", entry->d_name);
+            //printf("%*s%s\n", indent, "", entry->d_name);
+            buildEntryString(entry->d_name, entry->d_name, indent);
+            printEntry();
         }
     }
     closedir(dir);

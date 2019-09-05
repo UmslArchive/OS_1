@@ -6,14 +6,14 @@
 //File:     "main.c"
 //=============================================================================
 
-#include "Print.h"
+#include "DirectoryParser.h"
 
 int main(int argc, char** argv) {
    initializeFlags(); 
    
    setFlags(argc, argv);
 
-   printAll();
+   listDirectories(dirName, 0);
 
    return 0;
 }

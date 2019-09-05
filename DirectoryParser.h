@@ -9,20 +9,12 @@
 #ifndef DIRECTORYPARSER_H
 #define DIRECTORYPARSER_H
 
-#include <unistd.h>
-#include <dirent.h>
-#include <errno.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <time.h>
-#include <sys/stat.h>
-#include <string.h>
-#include "Options.h"
+#include "Print.h"
 
 char* getCWD();
 
 int isDirectory(const char* path);
 
-void listdir(const char* name, int indent);
+void listDirectories(const char* path, int indent);
 
 #endif
