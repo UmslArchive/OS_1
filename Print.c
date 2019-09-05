@@ -91,11 +91,11 @@ void buildEntryString(const char* path, const char* name, int indent) {
     }
     currentEntry[i] = '\0';
 
-                /* Append File Info */
+                            /* Append File Info */
 
     //Add spaces between file name info.
     int j = i;
-    for(; j < 45; ++j) {
+    for(; j < 50; ++j) {
         concatToCurrentEntry(&i, " ");
     }
 

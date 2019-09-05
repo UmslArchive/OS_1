@@ -13,6 +13,11 @@ int main(int argc, char** argv) {
    
    setFlags(argc, argv);
 
+   if(helpFlag) {
+      printHelp();
+      return 0;
+   }
+
    listDirectories(dirName, 0);
 
    return 0;

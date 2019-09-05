@@ -139,6 +139,10 @@ void setFlags(int argc, char** argv) {
         if(argv[i] != NULL)
             dirName = argv[i];
     }
+
+    if(dirName == NULL) {
+        dirName = ".";
+    }
     //DEBUGprintArgs(argc, argv);
 }
 
