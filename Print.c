@@ -76,7 +76,7 @@ void buildEntryString(const char* path, const char* name, int indent) {
     //Get the current files stat struct.
     struct stat fileStat;
     if(lstat(path, &fileStat) == -1) {
-        perror("lstat");
+        perror("dt: error: ");
         exit(EXIT_FAILURE);
     }    
 
