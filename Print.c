@@ -19,6 +19,34 @@ static void concatToCurrentEntry(int* ip, const char* s){
     currentEntry[*ip + 1] = '\0';
 }
 
+static char* fileSizeStringGenerator(const int sizeInBytes) {
+    
+    char* result = (char*) malloc(1024);
+
+    //GB
+    if(sizeInBytes / 1073741824) {
+        sprintf(result, "%dG", sizeInBytes / 1073741824);
+        return result;
+    }
+
+    //MB
+    if(sizeInBytes / 1048576 > 0) {
+        sprintf(result, "%dM", sizeInBytes / 1048576);
+        return result;
+    }
+
+    //KB
+    if(sizeInBytes / 1024 > 0) {
+        sprintf(result, "%dK", sizeInBytes / 1024);
+        return result;
+    }
+
+    // < 1 KB
+    sprintf(result, "%d", sizeInBytes);
+
+    return result;
+}
+
 void printHelp() {
 
     printf("Here's a list of options:\n");
@@ -38,6 +66,7 @@ void printHelp() {
 
 void buildEntryString(const char* path, const char* name, int indent) {
 
+    //Ignore current and parent directory.
     if(path == "." || path == "..")
         return;
 
@@ -152,6 +181,33 @@ void buildEntryString(const char* path, const char* name, int indent) {
         concatToCurrentEntry(&i, groupInfo->gr_name);
 
         concatToCurrentEntry(&i, "\t");
+    }
+
+    //File size.
+    if(fileSizeFlag) {
+        concatToCurrentEntry(&i, fileSizeStringGenerator(fileStat.st_size));
+
+        concatToCurrentEntry(&i, "\t");
+    }
+
+    //Last Modification Time.
+    if(lastModTimeFlag) {
+        int j;
+        char* lastModTime = (char*) malloc(255);
+        lastModTime = ctime(&fileStat.st_mtime);
+
+        //Remove the pointlessly forced \n character from the end of the 
+        //returned string from ctime.
+        for(j = 0; j < strlen(lastModTime); ++j) {
+            if(lastModTime[j] == '\n')
+                 lastModTime[j] = '\0';
+        }
+
+        concatToCurrentEntry(&i, lastModTime);
+
+        concatToCurrentEntry(&i, "\t");
+
+        //Won't let me free(lastModTime) here for some reason?
     }
 }
 

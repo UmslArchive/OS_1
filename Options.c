@@ -144,39 +144,16 @@ void setFlags(int argc, char** argv) {
 
 void printFlags() {
     
-    //Print -h status.
     printf("-h = %d\n", helpFlag);
-    
-    //Print -I n status.
     printf("-I = %d\t%s\n", setIndentFlag, indentValString); 
-
-    //Print -L status.
     printf("-L = %d\n", symLinkFlag); 
-    
-    //Print -t status.
     printf("-t = %d\n", printInfoFlag);
-
-    //Print -p status.
     printf("-p = %d\n", permissionsFlag);
-
-    //Print -i status.
     printf("-i = %d\n", numLinksFlag);
-
-    //Print -u status.
     printf("-u = %d\n", uidFlag);
-
-    //Print -g status.
     printf("-g = %d\n", gidFlag);
-    
-    //Print -s status.
     printf("-s = %d\n", fileSizeFlag);
-
-    //Print -d status.
     printf("-d = %d\n", lastModTimeFlag);
-
-    //Print -l status.
     printf("-l = %d\n", tpiugsFlag);
-
-    //Print Directory Name.
     printf("dirname = %s\n", dirName);
 }
