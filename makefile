@@ -1,7 +1,7 @@
 RELEASE_NAME=dt
 
 ALL: main.o
-	gcc -o $(RELEASE_NAME) main.c Options.c DirectoryParser.c Print.c -g -I .
+	gcc -o $(RELEASE_NAME) main.c Options.c FileSystem.c Print.c -g -I .
 
 .PHONY: clean
 

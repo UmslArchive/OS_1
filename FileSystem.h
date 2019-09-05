@@ -3,22 +3,18 @@
 //Author:   Colby Ackerman
 //Class:    Operating Systems (CS4760)
 //Project:  Assignment 1
-//File:     "main.c"
+//File:     "FileSystem.h"
 //=============================================================================
 
-#include "FileSystem.h"
+#ifndef DIRECTORYPARSER_H
+#define DIRECTORYPARSER_H
 
-int main(int argc, char** argv) {
-   initializeFlags(); 
-   
-   setFlags(argc, argv);
+#include "Print.h"
 
-   if(helpFlag) {
-      printHelp();
-      return 0;
-   }
+char* getCWD();
 
-   listDirectories(dirName, 0);
+int isDirectory(const char* path);
 
-   return 0;
-}
+void listDirectories(const char* path, int indent);
+
+#endif
