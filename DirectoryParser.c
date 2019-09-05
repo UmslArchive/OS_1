@@ -30,25 +30,7 @@ char* getCWD() {
     return mycwdp;
 }
 
-int listFilesInDirectory(char* path){
-    struct dirent* direntp;
-    DIR* dirp;
-
-    if((dirp = opendir(path)) == NULL) {
-        perror ("Failed to open directory");
-        return 1;
-    }
-
-    while((direntp = readdir(dirp)) != NULL) {
-        printf("%s\n", direntp->d_name);
-    }
-
-    while((closedir(dirp) == -1) && (errno == EINTR));
-    
-    return 0;
-}
-
-int isDirectory(char* path) {
+int isDirectory(const char* path) {
     struct stat statbuf;
 
     if(stat(path, &statbuf) == -1)
@@ -57,21 +39,21 @@ int isDirectory(char* path) {
         return S_ISDIR(statbuf.st_mode);
 }
 
-void listdir(const char *name, int indent) {
+void listdir(const char *path, int indent) {
     DIR* dir;
     struct dirent* entry;
 
-    if(!(dir = opendir(name)))
+    if(!(dir = opendir(path)))
         return;
 
     while((entry = readdir(dir)) != NULL) {
-        if(isDirectory(name)) {
-            char path[1024];
+        if(isDirectory(path)) {
+            char newPath[1024];
             if(strcmp(entry->d_name, ".") == 0 || strcmp(entry->d_name, "..") == 0)
                 continue;
-            snprintf(path, sizeof(path), "%s/%s", name, entry->d_name);
+            snprintf(newPath, sizeof(newPath), "%s/%s", path, entry->d_name);
             printf("%*s-%s\n", indent, "", entry->d_name);
-            listdir(path, indent + convertedIndentVal);
+            listdir(newPath, indent + convertedIndentVal);
         }
         else {
             printf("%*s- %s\n", indent, "", entry->d_name);
