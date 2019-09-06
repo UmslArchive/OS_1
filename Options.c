@@ -128,6 +128,7 @@ void setFlags(int argc, char** argv) {
             case '?':
                 if(optopt = 'I') {
                     printf("Option -%c requires an argument.\n", optopt);
+                    exit(0);
                 }
                 break;
         }

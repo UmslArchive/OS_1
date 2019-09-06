@@ -1,9 +1,15 @@
-RELEASE_NAME=dt
+CC = gcc
+CFLAGS = -I.
+TARGET = dt
+OBJS = main.o FileSystem.o Options.o Print.o
+.SUFFIXES: .c .o
 
-ALL: main.o
-	gcc -o $(RELEASE_NAME) main.c Options.c FileSystem.c Print.c -g -I .
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) -o $@ $(OBJS)
 
-.PHONY: clean
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
 
 clean:
-	rm -f *.o $(RELEASE_NAME)
+	rm -f *.o $(TARGET)
