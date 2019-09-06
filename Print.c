@@ -85,6 +85,7 @@ void buildEntryString(const char* path, const char* name, int indent) {
         currentEntry[i] = ' ';
     }
 
+
     //Append File name.
     for(;i < indent + strlen(name); ++i){
         currentEntry[i] = name[i - indent];
@@ -92,6 +93,27 @@ void buildEntryString(const char* path, const char* name, int indent) {
     currentEntry[i] = '\0';
 
                             /* Append File Info */
+
+    //Follow symlinks if file is a sym link.
+    if((fileStat.st_mode & S_IFMT) == S_IFLNK) {
+        char target_path[256];
+        const char* link_path = name;
+
+        /* Attempt to read the target of the symbolic link. */
+        int len = readlink (link_path, target_path, sizeof (target_path));
+
+        if (len == -1) {
+            perror ("readlink");
+        }
+        else {
+            /* NUL-terminate the target path. */
+            target_path[len] = '\0';
+
+            /* Print it. */
+            concatToCurrentEntry(&i, "-->slink:");
+            concatToCurrentEntry(&i, target_path);
+        }
+    }
 
     //Add spaces between file name info.
     int j = i;
@@ -140,7 +162,7 @@ void buildEntryString(const char* path, const char* name, int indent) {
                 break;
 
             case S_IFLNK:
-                concatToCurrentEntry(&i, "SymLink");
+                concatToCurrentEntry(&i, "SymLink\t");
                 break;
 
             case S_IFSOCK:

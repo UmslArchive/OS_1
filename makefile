@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -I.
+CFLAGS = -I. -g
 TARGET = dt
 OBJS = main.o FileSystem.o Options.o Print.o
 .SUFFIXES: .c .o
