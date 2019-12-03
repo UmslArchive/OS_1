@@ -91,6 +91,18 @@ void buildEntryString(const char* path, const char* name, int indent) {
     }
     currentEntry[i] = '\0';
 
+    //Append symlink
+    char buf[1024];
+    ssize_t len;
+    if(symLinkFlag) {
+        if ((len = readlink(path, buf, sizeof(buf)-1)) != -1)
+        {
+            buf[len] = '\0';
+            concatToCurrentEntry(&i, " -> ");
+            concatToCurrentEntry(&i, buf);
+        }
+    }
+
                             /* Append File Info */
 
     //Add spaces between file name info.
