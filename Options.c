@@ -21,7 +21,7 @@ int lastModTimeFlag;
 int tpiugsFlag;
 
 char* indentValString;
-int convertedIndentVal;
+int convertedIndentVal = 2;
 char* dirName;
 
 void initializeFlags() {
@@ -126,7 +126,7 @@ void setFlags(int argc, char** argv) {
                 break;
                 
             case '?':
-                if(optopt = 'I') {
+                if(optopt == 'I') {
                     printf("Option -%c requires an argument.\n", optopt);
                     exit(0);
                 }

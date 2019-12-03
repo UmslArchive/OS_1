@@ -67,7 +67,7 @@ void printHelp() {
 void buildEntryString(const char* path, const char* name, int indent) {
 
     //Ignore current and parent directory.
-    if(path == "." || path == "..")
+    if(strcmp(path, ".") == 0 || strcmp(path, "..") == 0)
         return;
 
     //Index to be passed to concatToCurrentEntry func.
@@ -159,7 +159,7 @@ void buildEntryString(const char* path, const char* name, int indent) {
     if(numLinksFlag) {
         char temp[255];
 
-        sprintf(temp, "%ld", fileStat.st_nlink);
+        sprintf(temp, "%hu", fileStat.st_nlink);
         concatToCurrentEntry(&i, temp);
 
         concatToCurrentEntry(&i, "\t");
