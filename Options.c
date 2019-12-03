@@ -21,7 +21,7 @@ int lastModTimeFlag;
 int tpiugsFlag;
 
 char* indentValString;
-int convertedIndentVal = 2;
+int convertedIndentVal = 4;
 char* dirName;
 
 void initializeFlags() {
